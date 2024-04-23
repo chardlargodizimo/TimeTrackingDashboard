@@ -1,0 +1,315 @@
+:root {
+    --clr-primary-400: hsl(246, 80%, 60%);
+    --clr-work: hsl(15, 100%, 70%);
+    --clr-play: hsl(195, 74%, 62%);
+    --clr-study: hsl(348, 100%, 68%);
+    --clr-exercise: hsl(145, 58%, 55%);
+    --clr-social: hsl(264, 64%, 52%);
+    --clr-self-care: hsl(43, 84%, 65%);
+
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-neutral-200: hsl(236, 100%, 87%);
+    --clr-neutral-300: hsl(235, 45%, 61%);
+    --clr-neutral-400: hsl(235, 46%, 20%);
+    --clr-neutral-500: hsl(226, 43%, 10%);
+
+    --clr-fill-dots: hsl(240, 37%, 35%);
+
+    --fs-200: 0.875rem;
+    --fs-300: 1rem;
+    --fs-400: 1.125rem;
+    --fs-500: 1.375rem;
+    --fs-600: 2rem;
+
+    --ff-default: "Rubik", sans-serif;
+
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-500: 500;
+
+    --border-radius: 1rem;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input {
+  line-height: 1.1;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.grid {
+    display: grid;
+}
+
+.wrapper {
+    width: calc(100% - 3rem);
+    max-width: 1110px;
+    margin-inline: auto;
+}
+
+.default {
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-neutral-500);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-400);
+    font-family: var(--ff-default);
+    display: grid;
+    place-items: center;
+}
+
+.task-tracker {
+    --gap: 1.5rem;
+    margin-block: 5rem;
+    align-items: start;
+    gap: var(--gap);
+}
+
+.task {
+    --_task-bg: var(--task-bg, var(--clr-neutral-400));
+    background-color: var(--_task-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.task--grid {
+    display: grid;
+    grid-template-rows: 2.45rem min-content;
+}
+
+.task__img {
+    margin-left: auto;
+    transform: translate(-16px, -10px);
+}
+
+.task__info {
+    cursor: pointer;
+    background-color: var(--clr-neutral-400);
+    padding: 1.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    z-index: 100;
+}
+
+.task__info:where(:hover, :focus-visible) {
+    background-color: hsl(240, 37%, 35%);
+}
+
+
+.task__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task__title {
+    font-size: var(--fs-400);
+    font-weight: var(--fw-500);
+}
+
+.interval {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.interval__current {
+    font-size: var(--fs-600);
+    font-weight: var(--fw-300);
+}
+
+.interval__prev {
+    color: var(--clr-neutral-200);
+    font-size: var(--fs-200);
+}
+
+.account {
+    background-color: var(--clr-neutral-400);
+    border-radius: var(--border-radius);
+}
+
+
+.profile {
+    background-color: var(--clr-primary-400);
+    padding: 1.875rem 1.75rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile__pic {
+    width: 72px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px solid var(--clr-neutral-100);
+}
+
+.profile__for {
+    color: var(--clr-neutral-200);
+    font-size: var(--fs-200);
+}
+
+.profile__name {
+    color: var(--clr-neutral-100);
+    font-weight: var(--fw-300);
+    font-size: var(--fs-500);
+    line-height: 1.2;
+}
+
+.periods {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 1.75rem;
+}
+
+
+.work {
+    --task-bg: var(--clr-work);
+}
+
+.play {
+    --task-bg: var(--clr-play);
+}
+
+.study {
+    --task-bg: var(--clr-study);
+}
+
+.exercise {
+    --task-bg: var(--clr-exercise);
+}
+
+.social {
+    --task-bg: var(--clr-social);
+}
+
+.self-care {
+    --task-bg: var(--clr-self-care);
+}
+
+.button {
+    --_clr-button: var(--clr-button, var(--clr-neutral-100));
+    color: var(--_clr-button);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+.option {
+    --clr-button: var(--clr-neutral-300);
+}
+
+.ellipsis {
+    --clr-button: var(--clr-neutral-200);   
+    font-size: 22px;
+}
+
+.ellipsis:where(:hover, :focus-visible) {
+    color: var(--clr-neutral-100);
+}
+
+.option:where(:hover, :focus-visible, .active) {
+    --clr-button: var(--clr-neutral-100);
+}
+
+@media (min-width: 40em) {
+    :root {
+        --fs-200: 1rem;
+        --fs-500: 2.5rem;
+        --fs-600: 3.5rem;
+    }
+    .task-tracker {
+        --gap: 1.875rem;
+        grid-template-columns: repeat(auto-fit, minmax(min(255px, 100%), 1fr));
+    }
+
+    .account {
+        grid-row: 1 / span 2;
+        align-self: stretch;
+    }
+
+    .profile, .periods {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .profile {
+        padding-block: 2rem 4.5rem;
+        gap: 2.25rem;
+    }
+
+    .profile__pic {
+        width: 84px;
+    }
+
+    .profile__name {
+        max-width: 2ch;
+    }
+
+    .periods {
+        padding-block: 1.75rem;
+        gap: 1.35rem;
+    }
+
+    .task--grid {
+        grid-template-rows: 2.8rem min-content;
+    }
+
+    .task__info {
+        padding-inline: 2rem;
+    }
+
+    .interval {
+        flex-direction: column;
+        align-items: start;
+        margin-top: 1.625rem;
+        gap: 7px;
+    }
+}
