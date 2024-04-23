@@ -142,7 +142,7 @@ const renderCards = (clickedOption) => {
         <div class="task__info">
           <header class="task__heading">
               <h2 class="task__title">${name}</h2>
-              <button class="button ellipsis">
+              <button class="button ellipsis"><span class="visually-hidden">Ellipsis button</span>
                   <i class="fa-solid fa-ellipsis"></i>
               </button>
           </header>
