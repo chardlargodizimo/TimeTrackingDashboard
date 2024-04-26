@@ -1,107 +1,107 @@
-let data = [
-    {
-      "title": "Work",
-      "timeframes": {
-        "daily": {
-          "current": 5,
-          "previous": 7
-        },
-        "weekly": {
-          "current": 32,
-          "previous": 36
-        },
-        "monthly": {
-          "current": 103,
-          "previous": 128
-        }
-      }
-    },
-    {
-      "title": "Play",
-      "timeframes": {
-        "daily": {
-          "current": 1,
-          "previous": 2
-        },
-        "weekly": {
-          "current": 10,
-          "previous": 8
-        },
-        "monthly": {
-          "current": 23,
-          "previous": 29
-        }
-      }
-    },
-    {
-      "title": "Study",
-      "timeframes": {
-        "daily": {
-          "current": 0,
-          "previous": 1
-        },
-        "weekly": {
-          "current": 4,
-          "previous": 7
-        },
-        "monthly": {
-          "current": 13,
-          "previous": 19
-        }
-      }
-    },
-    {
-      "title": "Exercise",
-      "timeframes": {
-        "daily": {
-          "current": 1,
-          "previous": 1
-        },
-        "weekly": {
-          "current": 4,
-          "previous": 5
-        },
-        "monthly": {
-          "current": 11,
-          "previous": 18
-        }
-      }
-    },
-    {
-      "title": "Social",
-      "timeframes": {
-        "daily": {
-          "current": 1,
-          "previous": 3
-        },
-        "weekly": {
-          "current": 5,
-          "previous": 10
-        },
-        "monthly": {
-          "current": 21,
-          "previous": 23
-        }
-      }
-    },
-    {
-      "title": "Self Care",
-      "timeframes": {
-        "daily": {
-          "current": 0,
-          "previous": 1
-        },
-        "weekly": {
-          "current": 2,
-          "previous": 2
-        },
-        "monthly": {
-          "current": 7,
-          "previous": 11
-        }
-      }
-    }
-]
+// let data = [
+//     {
+//       "title": "Work",
+//       "timeframes": {
+//         "daily": {
+//           "current": 5,
+//           "previous": 7
+//         },
+//         "weekly": {
+//           "current": 32,
+//           "previous": 36
+//         },
+//         "monthly": {
+//           "current": 103,
+//           "previous": 128
+//         }
+//       }
+//     },
+//     {
+//       "title": "Play",
+//       "timeframes": {
+//         "daily": {
+//           "current": 1,
+//           "previous": 2
+//         },
+//         "weekly": {
+//           "current": 10,
+//           "previous": 8
+//         },
+//         "monthly": {
+//           "current": 23,
+//           "previous": 29
+//         }
+//       }
+//     },
+//     {
+//       "title": "Study",
+//       "timeframes": {
+//         "daily": {
+//           "current": 0,
+//           "previous": 1
+//         },
+//         "weekly": {
+//           "current": 4,
+//           "previous": 7
+//         },
+//         "monthly": {
+//           "current": 13,
+//           "previous": 19
+//         }
+//       }
+//     },
+//     {
+//       "title": "Exercise",
+//       "timeframes": {
+//         "daily": {
+//           "current": 1,
+//           "previous": 1
+//         },
+//         "weekly": {
+//           "current": 4,
+//           "previous": 5
+//         },
+//         "monthly": {
+//           "current": 11,
+//           "previous": 18
+//         }
+//       }
+//     },
+//     {
+//       "title": "Social",
+//       "timeframes": {
+//         "daily": {
+//           "current": 1,
+//           "previous": 3
+//         },
+//         "weekly": {
+//           "current": 5,
+//           "previous": 10
+//         },
+//         "monthly": {
+//           "current": 21,
+//           "previous": 23
+//         }
+//       }
+//     },
+//     {
+//       "title": "Self Care",
+//       "timeframes": {
+//         "daily": {
+//           "current": 0,
+//           "previous": 1
+//         },
+//         "weekly": {
+//           "current": 2,
+//           "previous": 2
+//         },
+//         "monthly": {
+//           "current": 7,
+//           "previous": 11
+//         }
+//       }
+//     }
+// ]
 
 const buttons = document.querySelectorAll('.option')
 
@@ -115,17 +115,21 @@ const clearTracker = () => {
   tasks.forEach(task => task.remove())
 }
 
-const renderCards = (clickedOption) => {
+const renderCards = (clickedOption, data) => {
   clearTracker()
   const taskTracker = document.querySelector('.task-tracker')
 
   const calcTimeframe = (option) => {
-    if (option === 'daily') {
-      return "Yesterday"
-    } else if (option === 'weekly') {
-      return "Last Week"
-    } else if  (option === 'monthly') {
-      return "Last Month"
+    switch (option) {
+      case 'daily': 
+        return "Yesterday";
+        break;
+      case 'weekly':
+        return "Last Week";
+        break;
+      case 'monthly':
+        return "Last Month";
+        break;
     }
   }
 
@@ -161,7 +165,11 @@ buttons.forEach(button => {
   button.addEventListener('click', () => {
     activateClickedButton(button)
     const clickedOption = button.dataset.type
-    renderCards(clickedOption)
+    // renderCards(clickedOption)
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => renderCards(clickedOption, data))
+      .catch(error => console.error('Error fetching data:', error));
   })
 });
 
